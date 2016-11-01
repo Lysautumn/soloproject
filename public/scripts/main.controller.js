@@ -6,9 +6,9 @@ function MainController(streamapi) {
   console.log('MainController loaded');
   main.forSearch = function() {
     if(main.movie) {
-      streamapi.findMovie();
+      streamapi.findMovie(main.search);
     } else {
-      streamapi.findShow();
+      streamapi.findShow(main.search);
     }
   };
 }
