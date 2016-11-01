@@ -12,9 +12,12 @@
     <script src="vendors/jquery.min.js" charset="utf-8"></script>
     <script src="vendors/bootstrap.min.js" charset="utf-8"></script>
 
+    <script src="scripts/module.js" charset="utf-8"></script>
+    <script src="scripts/main.controller.js" charset="utf-8"></script>
+    <script src="scripts/stream.service.js" charset="utf-8"></script>
     <script src="scripts/app.js" charset="utf-8"></script>
   </head>
-  <body>
+  <body ng-app="streamApp" ng-controller="MainController as main">
     <div class="container">
       <!-- modal for signing in -->
       <div class="modal fade" id="signInModal">
@@ -56,8 +59,10 @@
     <main>
       <p>This is a paragraph all about how awesome Streamlet is. It's a really great service, and you can use with with or without an account! How cool is that?</p>
       <form>
-        <input type="text" placeholder="Is it streaming?"/>
-        <button type="submit" id="searchBtn">Search</button>
+        <input type="radio" name="type" ng-model="main.movie" value="movie" checked />Movie
+        <input type="radio" name="type" ng-model="main.tv" value="tv" />TV Show
+        <input type="text" id="search" name="search" ng-model="main.search" placeholder="Is it streaming?"/>
+        <button type="submit" id="searchBtn" ng-click="main.forSearch()">Search</button>
       </form>
     </main>
   </body>
