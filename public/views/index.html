@@ -16,54 +16,17 @@
     <script src="scripts/main.controller.js" charset="utf-8"></script>
     <script src="scripts/stream.service.js" charset="utf-8"></script>
     <script src="scripts/app.js" charset="utf-8"></script>
+    <script src="scripts/app.config.js" charset="utf-8"></script>
+
+    <base href="/" />
   </head>
   <body ng-app="streamApp" ng-controller="MainController as main">
-    <div class="container">
-      <!-- modal for signing in -->
-      <div class="modal fade" id="signInModal">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-              <h4 class="modal-title">Log In</h4>
-            </div>
-            <div class="modal-body">
-              <form>
-                <label for="username">Username</label>
-                <input type="text" id="username" name="username" />
-                <label for="password">Password</label>
-                <input type="password" id="password" name="password" />
-              </form>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Log In</button>
-            </div>
-          </div><!-- /.modal-content -->
-        </div><!-- /.modal-dialog -->
-      </div><!-- /.modal -->
-      <!-- end of modal -->
-    </div>
-
     <header>
       <img id="tv" src="assets/TV.svg" alt="television" />
       <h1 id="streamlet">Streamlet</h1>
-      <div id="nav">
-        <button class="navBtn">Register</button>
-        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#signInModal">Log In</button>
-      </div>
-
     </header>
-    <main>
-      <p>This is a paragraph all about how awesome Streamlet is. It's a really great service, and you can use with with or without an account! How cool is that?</p>
-      <form>
-        <input type="radio" name="type" ng-model="main.movie" value="movie" checked />Movie
-        <input type="radio" name="type" ng-model="main.tv" value="tv" />TV Show
-        <input type="text" id="search" name="search" ng-model="main.search" placeholder="Is it streaming?"/>
-        <button type="submit" id="searchBtn" ng-click="main.forSearch()">Search</button>
-      </form>
-    </main>
+    <div id="viewer" ng-view>
+
+    </div>
   </body>
 </html>

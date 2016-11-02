@@ -1,0 +1,8 @@
+<h1>Welcome Back!</h1>
+<form>
+  <!-- search bar -->
+  <input type="radio" name="type" ng-model="main.movie" value="movie" />Movie
+  <input type="radio" name="type" ng-model="main.tv" value="tv" />TV Show
+  <input type="text" id="search" name="search" ng-model="main.search" placeholder="Is it streaming?"/>
+  <button type="submit" id="searchBtn" ng-click="main.forSearch()">Search</button>
+</form>

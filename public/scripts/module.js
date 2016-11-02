@@ -1,2 +1,2 @@
 // sets up module
-angular.module('streamApp', []);
+angular.module('streamApp', ['ngRoute']);

@@ -7,8 +7,15 @@ function MainController(streamapi) {
   main.forSearch = function() {
     if(main.movie) {
       streamapi.findMovie(main.search);
-    } else {
+    } else if(main.tv) {
       streamapi.findShow(main.search);
+    } else {
+      alert('Please select format');
     }
   };
+}
+function appendDom(title) {
+  var main = this;
+  main.titlesArray = [];
+  main.titlesArray = title;
 }
