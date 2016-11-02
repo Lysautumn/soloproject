@@ -3,6 +3,8 @@ var bodyParser = require('body-parser');
 var path = require('path');
 var app = express();
 var port = process.env.PORT || 3000;
+//var passport = require('passport');
+var pg = require('pg');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));

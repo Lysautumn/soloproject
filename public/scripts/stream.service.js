@@ -8,7 +8,7 @@ function StreamApiService($http) {
   this.findMovie = function(movie) {
     var searchQuery = tripleEncode(movie);
     var moviePromises = [];
-    $http.get(API + '/search/movie/title/' + searchQuery + '/fuzzy').then(function(response) {
+    return $http.get(API + '/search/movie/title/' + searchQuery + '/fuzzy').then(function(response) {
       for(var i = 0; i < response.data.results.length; i++) {
         var movieId = response.data.results[i].id;
         var movieReq = $http.get(API + '/movie/' + movieId);
@@ -22,13 +22,14 @@ function StreamApiService($http) {
   this.findShow = function(show) {
     var searchQuery = tripleEncode(show);
     var showPromises = [];
-    $http.get(API + '/search/title/' + searchQuery + '/fuzzy').then(function(response) {
+    return $http.get(API + '/search/title/' + searchQuery + '/fuzzy').then(function(response) {
       for(var i = 0; i < response.data.results.length; i++) {
         var showId = response.data.results[i].id;
         var showReq = $http.get(API + '/show/' + showId);
         console.log('showReq:', showReq);
         showPromises.push(showReq);
       }
+      console.log(showPromises);
       return Promise.all(showPromises);
     });
   };
