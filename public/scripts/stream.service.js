@@ -7,31 +7,29 @@ function StreamApiService($http) {
   // function for searching movies
   this.findMovie = function(movie) {
     var searchQuery = tripleEncode(movie);
+    var moviePromises = [];
     $http.get(API + '/search/movie/title/' + searchQuery + '/fuzzy').then(function(response) {
       for(var i = 0; i < response.data.results.length; i++) {
         var movieId = response.data.results[i].id;
         var movieReq = $http.get(API + '/movie/' + movieId);
         console.log('movieReq:', movieReq);
+        moviePromises.push(movieReq);
       }
-    }).then(function(title) {
-      appendDom();
+      return Promise.all(moviePromises);
     });
   };
   // function for searching shows
   this.findShow = function(show) {
-    console.log('Inside findShow');
-    console.log('Searching for: ', show);
     var searchQuery = tripleEncode(show);
-    console.log('searchQuery:', searchQuery);
+    var showPromises = [];
     $http.get(API + '/search/title/' + searchQuery + '/fuzzy').then(function(response) {
       for(var i = 0; i < response.data.results.length; i++) {
         var showId = response.data.results[i].id;
-        console.log('showId:', showId);
         var showReq = $http.get(API + '/show/' + showId);
         console.log('showReq:', showReq);
+        showPromises.push(showReq);
       }
-    }).then(function(title) {
-      appendDom();
+      return Promise.all(showPromises);
     });
   };
 }
