@@ -18,11 +18,16 @@
   "dependencies": {
     "angular": "^1.5.8",
     "angular-route": "^1.5.8",
+    "bcrypt": "^0.8.7",
     "body-parser": "^1.15.2",
     "bootstrap": "^3.3.7",
     "express": "^4.14.0",
+    "express-session": "^1.14.2",
     "jquery": "^3.1.1",
+    "mongoose": "^4.6.5",
     "node": "0.0.0",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0",
     "pg": "^6.1.0"
   }
 }

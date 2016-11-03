@@ -6,3 +6,7 @@
   <input type="text" id="search" name="search" ng-model="main.search" placeholder="Is it streaming?"/>
   <button type="submit" id="searchBtn" ng-click="main.forSearch()">Search</button>
 </form>
+<div ng-repeat="title in main.titlesArray">
+  <img src="{{title.poster}}" />
+  <p>{{title.title}}</p>
+</div>

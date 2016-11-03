@@ -14,6 +14,8 @@
 
     <script src="scripts/module.js" charset="utf-8"></script>
     <script src="scripts/main.controller.js" charset="utf-8"></script>
+    <script src="scripts/register.controller.js" charset="utf-8"></script>
+    <script src="scripts/login.controller.js" charset="utf-8"></script>
     <script src="scripts/stream.service.js" charset="utf-8"></script>
     <script src="scripts/app.js" charset="utf-8"></script>
     <script src="scripts/app.config.js" charset="utf-8"></script>
@@ -22,7 +24,7 @@
   </head>
   <body ng-app="streamApp" ng-controller="MainController as main">
     <header>
-      <img id="tv" src="assets/TV.svg" alt="television" />
+      <a href="/"><img id="tv" src="assets/TV.svg" alt="television" /></a>
       <h1 id="streamlet">Streamlet</h1>
     </header>
     <div id="viewer" ng-view>
