@@ -4,7 +4,7 @@ angular.module('streamApp').service('streamapi', StreamApiService);
 function StreamApiService($http) {
   var main = this;
   var API = 'http://api-public.guidebox.com/v1.43/US/rKAoemYxIt34rNVqrDbjRLqJIM59Z8Md';
-  var netflixAPI = 'http://netflixroulette.net/api/api.php?title='
+  var netflixAPI = 'http://netflixroulette.net/api/api.php?title=';
   // function for searching movies
   this.findMovie = function(movie) {
     var searchQuery = tripleEncode(movie);
