@@ -1,34 +1,7 @@
-<!-- modal for signing in -->
-<div class="container" ng-controller="LoginController as login">
-  <div class="modal fade" id="signInModal">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-          <h4 class="modal-title">Log In</h4>
-        </div>
-        <div class="modal-body">
-          <form>
-            <label for="username">Username</label>
-            <input type="text" id="username" name="username" ng-model="login.username" />
-            <label for="password">Password</label>
-            <input type="password" id="password" name="password" ng-model="login.password" />
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary" ng-click="login.login()" data-dismiss="modal" >Log In</button>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- end of modal -->
+<!-- Navigation for logging in and registering -->
 <div id="nav">
   <button type="button" class="btn btn-default"><a href="/registeruser">Register</a></button>
-  <button type="button" class="btn btn-default" data-toggle="modal" data-target="#signInModal">Log In</button>
+  <button type="button" class="btn btn-default"><a href="/loginuser">Log In</a></button>
 </div>
 <!-- where short app description will go -->
   <p>This is a paragraph all about how awesome Streamlet is. It's a really great service, and you can use with with or without an account! How cool is that?</p>
@@ -39,7 +12,13 @@
     <input type="text" id="search" name="search" ng-model="main.search" placeholder="Is it streaming?"/>
     <button type="submit" id="searchBtn" ng-click="main.forSearch()">Search</button>
   </form>
+  <!-- for displaying search results -->
   <div ng-repeat="title in main.titlesArray">
     <img src="{{title.poster}}" />
     <p>{{title.title}}</p>
+    <p>Subscription:</p>
+    <p>{{title.subscription_web_sources}}</p>
+    <p>Purchase:</p>
+    <p>{{title.purchase_web_sources}}</p>
+    <button type="button" id="saveButton" ng-controller="SaveController as save" ng-click="save.saveTitle()">Save</button>
   </div>

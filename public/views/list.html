@@ -1,4 +1,6 @@
 <h1>List</h1>
-<div>
-  
+<!-- for displaying user's list of favorites -->
+<div ng-repeat="{{title in main.userList}}">
+  <img src="{{title.poster}}" />
+  <p>{{title.title}}</p>
 </div>

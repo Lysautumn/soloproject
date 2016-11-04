@@ -15,6 +15,7 @@ function findByUsername(username) {
       client.query('SELECT * FROM solo_users WHERE username = $1', [username], function(err, result) {
         done();
         if(err) {
+          console.log('Error querying DB', err);
           reject(err);
         }
         resolve(result.rows[0]);

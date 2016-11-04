@@ -1,4 +1,7 @@
 <h1>Welcome Back!</h1>
+<div id="nav" ng-controller="LogoutController as logout">
+  <button type="button" ng-click="logout.logout()">Log Out</button>
+</div>
 <form>
   <!-- search bar -->
   <input type="radio" name="type" ng-model="main.movie" value="movie" />Movie
@@ -9,4 +12,9 @@
 <div ng-repeat="title in main.titlesArray">
   <img src="{{title.poster}}" />
   <p>{{title.title}}</p>
+  <p>Subscription:</p>
+  <p>{{title.subscription_web_sources}}</p>
+  <p>Purchase:</p>
+  <p>{{title.purchase_web_sources}}</p>
+  <button type="button" id="saveButton" ng-controller="SaveController as save" ng-click="save.saveTitle()">Save</button>
 </div>

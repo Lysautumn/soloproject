@@ -8,6 +8,8 @@ var user = require('./models/user');
 // routes for logging in and registering user
 var login = require('./routes/login');
 var register = require('./routes/register');
+var logout = require('./routes/logout');
+var save = require('./routes/save');
 var auth = require('./passport/setup');
 var passport = require('passport');
 var session = require('express-session');
@@ -37,20 +39,14 @@ app.use(passport.session());
 
 app.use('/register', register);
 app.use('/login', login);
+app.use('/logout', logout);
+app.use('/save', save);
 
 app.get('/', function(req, res) {
   res.sendFile(path.join(__dirname, 'public/views/index.html'));
 });
 
 app.use(ensureAuthenticated);
-
-app.get('/landing', function(req, res) {
-  res.sendStatus(200);
-});
-
-app.get('/', function(req, res) {
-  res.sendFile(path.join(__dirname, 'public/views/index.html'));
-});
 
 function ensureAuthenticated(req, res, next) {
   if(req.isAuthenticated) {
