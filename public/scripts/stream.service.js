@@ -1,7 +1,7 @@
 angular.module('streamApp').service('streamapi', StreamApiService);
 
 // sets up http function and API variable
-function StreamApiService($http) {
+function StreamApiService($http, $q) {
   var main = this;
   var API = 'http://api-public.guidebox.com/v1.43/US/rKAoemYxIt34rNVqrDbjRLqJIM59Z8Md';
   var netflixAPI = 'http://netflixroulette.net/api/api.php?title='
@@ -25,7 +25,7 @@ function StreamApiService($http) {
           moviePromises.push(response);
         }
       });
-      return Promise.all(moviePromises);
+      return $q.all(moviePromises);
     });
   };
   // function for searching shows
@@ -38,27 +38,54 @@ function StreamApiService($http) {
       for(var i = 0; i < response.data.results.length; i++) {
         var showId = response.data.results[i].id;
         // API request for TV show info
-        var showReq = $http.get(API + '/show/' + showId);
+        // .then will allow us to reformat the response before it get passed to the next thing waiting for it
+        var showReq = $http.get(API + '/show/' + showId).then(function(response){
+          return response.data;
+        });
         // API request for TV show streaming info
-        var showStream = $http.get(API + '/show/' + showId + '/available_content');
+        // .then will allow us to reformat the response before it get passed to the next thing waiting for it
+        var showStream = $http.get(API + '/show/' + showId + '/available_content').then(function(response){
+          return response.data;
+        });
+
         console.log(showStream);
-        showPromises.push(showReq, showStream);
-        return Promise.all(showPromises);
+        // keep track of a list of promises to wait for
+        // each element in the list is a promise waiting for show info and stream info
+        showPromises.push($q.all([showReq,showStream]));
       }
-      return Promise.all(showPromises);
+      // return a promise that waits for everything from guidebox to finish
+      return $q.all(showPromises);
     });
 
-    var netflixPromise = $http.get(netflixAPI + netflixQuery).then(function(response) {
-      var moviePromises = [];
-      for(var i = 0; i < response.data.length; i++) {
-        moviePromises.push(response);
-      }
-      return Promise.all(moviePromises);
+    var netflixPromise = $http.get(netflixAPI + netflixQuery).then(function(response){
+      return response.data;
+    }).catch(function(err) {
+      // if there are any errors in the netflix api, just resolve with null instead
+      console.log('Error querying Netflix Roulette', err);
+      return $q.resolve(null);
     });
 
+    // finally, wait for both guidbox and netflix requests to finish and format the responses
+    return $q.all([guideboxPromise, netflixPromise]).then(function(results){
+      var guideboxResults = results[0];
+      var netflixResults = results[1];
 
-    return Promise.all([guideboxPromise, netflixPromise]).then(function(guideboxResults, netflixResults){
-      return guideboxResults.concat(netflixResults);
+      var allResults = {
+        guideboxResults: [],
+        netflixResults: netflixResults
+      };
+
+      for (var i = 0; i < guideboxResults.length; i++) {
+        var showInfo = guideboxResults[i][0];
+        var streamInfo = guideboxResults[i][1];
+
+        allResults.guideboxResults.push({showInfo, streamInfo});
+      }
+
+      //TODO format the netflix response to be the same as the guidebox response
+
+      console.log('allResults', allResults);
+      return allResults;
     });
   };
 }
