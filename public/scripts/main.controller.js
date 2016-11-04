@@ -20,13 +20,15 @@ function MainController(streamapi) {
       });
       // if tv radio is clicked
     } else if(main.tv) {
-      streamapi.findShow(main.search).then(function(show) {
+      streamapi.findShow(main.search).then(function(results) {
         // empty titles array for new results
         main.titlesArray = [];
         // display information for each tv show returned in the search
-        show.forEach(function(element) {
-          main.titlesArray.push(element.data);
+        results.guideboxResults.forEach(function(element) {
+          console.log(element);
+          main.titlesArray.push(element.showInfo);
         });
+        console.log(main.titlesArray);
       });
       // if neither radio button is clicked
     } else {
