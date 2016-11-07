@@ -11,21 +11,33 @@ function StreamApiService($http, $q) {
     var netflixQuery = encodeQuery(movie);
     var moviePromises = [];
     // API request for movie ids from Guidebox
-    return $http.get(API + '/search/movie/title/' + searchQuery + '/fuzzy').then(function(response) {
+    var guideboxPromise = $http.get(API + '/search/movie/title/' + searchQuery + '/fuzzy').then(function(response) {
       for(var i = 0; i < response.data.results.length; i++) {
         var movieId = response.data.results[i].id;
         // API request for each movie's information
-        var movieReq = $http.get(API + '/movie/' + movieId);
-        console.log(movieReq);
+        var movieReq = $http.get(API + '/movie/' + movieId).then(function(response) {
+          return response.data;
+        });
         moviePromises.push(movieReq);
       }
-      console.log(netflixQuery);
-      return $http.get(netflixAPI + netflixQuery).then(function(response) {
-        for(var i = 0; i < response.data.length; i++) {
-          moviePromises.push(response);
-        }
-      });
       return $q.all(moviePromises);
+    });
+    var netflixPromise = $http.get(netflixAPI + netflixQuery).then(function(response) {
+      return response.data;
+    }).catch(function(err) {
+      console.log('Error querying Netflix Roulette', err);
+      return $q.resolve(null);
+    });
+    return $q.all([guideboxPromise, netflixPromise]).then(function(results) {
+      var guideboxResults = results[0];
+      var netflixResults = results[1];
+
+      var allResults = {
+        guideboxResults: guideboxResults,
+        netflixResults: netflixResults
+      };
+      console.log('allResults', allResults);
+      return allResults;
     });
   };
   // function for searching shows
@@ -39,15 +51,14 @@ function StreamApiService($http, $q) {
         var showId = response.data.results[i].id;
         // API request for TV show info
         // .then will allow us to reformat the response before it get passed to the next thing waiting for it
-        var showReq = $http.get(API + '/show/' + showId).then(function(response){
+        var showReq = $http.get(API + '/show/' + showId).then(function(response) {
           return response.data;
         });
         // API request for TV show streaming info
         // .then will allow us to reformat the response before it get passed to the next thing waiting for it
-        var showStream = $http.get(API + '/show/' + showId + '/available_content').then(function(response){
+        var showStream = $http.get(API + '/show/' + showId + '/available_content').then(function(response) {
           return response.data;
         });
-
         console.log(showStream);
         // keep track of a list of promises to wait for
         // each element in the list is a promise waiting for show info and stream info
@@ -57,7 +68,7 @@ function StreamApiService($http, $q) {
       return $q.all(showPromises);
     });
 
-    var netflixPromise = $http.get(netflixAPI + netflixQuery).then(function(response){
+    var netflixPromise = $http.get(netflixAPI + netflixQuery).then(function(response) {
       return response.data;
     }).catch(function(err) {
       // if there are any errors in the netflix api, just resolve with null instead
@@ -65,8 +76,8 @@ function StreamApiService($http, $q) {
       return $q.resolve(null);
     });
 
-    // finally, wait for both guidbox and netflix requests to finish and format the responses
-    return $q.all([guideboxPromise, netflixPromise]).then(function(results){
+    // finally, wait for both guidebox and netflix requests to finish and format the responses
+    return $q.all([guideboxPromise, netflixPromise]).then(function(results) {
       var guideboxResults = results[0];
       var netflixResults = results[1];
 
@@ -81,9 +92,6 @@ function StreamApiService($http, $q) {
 
         allResults.guideboxResults.push({showInfo, streamInfo});
       }
-
-      //TODO format the netflix response to be the same as the guidebox response
-
       console.log('allResults', allResults);
       return allResults;
     });

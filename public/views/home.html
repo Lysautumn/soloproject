@@ -13,12 +13,21 @@
     <button type="submit" id="searchBtn" ng-click="main.forSearch()">Search</button>
   </form>
   <!-- for displaying search results -->
+  <div ng-repeat="title in main.netflixArray">
+    <h3>Netflix:</h3>
+    <img src="{{title.poster}}" />
+    <p>{{title.show_title}}</p>
+    <p>Netflix</p>
+    <button type="button" id="saveButton" ng-controller="SaveController as save" ng-click="save.saveTitle()">Save</button>
+  </div>
   <div ng-repeat="title in main.titlesArray">
     <img src="{{title.poster}}" />
     <p>{{title.title}}</p>
-    <p>Subscription:</p>
-    <p>{{title.subscription_web_sources}}</p>
-    <p>Purchase:</p>
-    <p>{{title.purchase_web_sources}}</p>
+    <div ng-repeat="title in main.streamArray[0].all_sources">
+      <p>{{title.display_name}}</p>
+    </div>
+    <div ng-repeat="title in main.streamArray[0]">
+      <p>{{title.display_name}}</p>
+    </div>
     <button type="button" id="saveButton" ng-controller="SaveController as save" ng-click="save.saveTitle()">Save</button>
   </div>
