@@ -9,6 +9,9 @@ function LogoutController($http, $location) {
 
     }).then(function() {
       $location.path('/');
+      main.titlesArray = [];
+      main.netflixArray = [];
+      main.streamArray = [];
     }, function(error) {
       console.log('Error logging out', error);
     });

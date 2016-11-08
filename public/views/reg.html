@@ -1,4 +1,4 @@
-<h1>Register</h1>
+<h2>Register</h2>
 <!-- registration form -->
   <form ng-controller="RegisterController as register">
     <label for="name">Name:</label>
@@ -9,5 +9,5 @@
     <input type="text" id="username" name="username" ng-model="register.username" />
     <label for="password">Password:</label>
     <input type="password" id="password" name="password" ng-model="register.password" />
-    <button type="submit" ng-click="register.register()">Submit</button>
+    <button type="submit" class="btn btn-custom" ng-click="register.register()">Submit</button>
   </form>

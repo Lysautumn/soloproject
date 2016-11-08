@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Streamlet</title>
     <link rel="stylesheet" href="vendors/bootstrap.min.css" />
+    <link href="https://fonts.googleapis.com/css?family=Bungee+Inline|Roboto" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="styles/style.css" />
 
     <script src="vendors/jquery.min.js" charset="utf-8"></script>
@@ -25,7 +28,7 @@
   </head>
   <body ng-app="streamApp" ng-controller="MainController as main">
     <header>
-      <a href="/"><img id="tv" src="assets/TV.svg" alt="television" /></a>
+      <a href="/"><i class="material-icons md-48 blue">play_circle_outline</i></a>
       <h1 id="streamlet">Streamlet</h1>
     </header>
 
@@ -33,5 +36,8 @@
     <div id="viewer" ng-view>
 
     </div>
+    <footer>
+      <p>Created with &#9829; by Ally Boyd</p>
+    </footer>
   </body>
 </html>

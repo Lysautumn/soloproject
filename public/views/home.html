@@ -1,16 +1,21 @@
 <!-- Navigation for logging in and registering -->
 <div id="nav">
-  <button type="button" class="btn btn-default"><a href="/registeruser">Register</a></button>
-  <button type="button" class="btn btn-default"><a href="/loginuser">Log In</a></button>
+  <button type="button" class="btn btn-custom reg btn-lg"><a href="/registeruser">Register</a></button>
+  <button type="button" class="btn btn-custom reg btn-lg"><a href="/loginuser">Log In</a></button>
 </div>
 <!-- where short app description will go -->
-  <p>This is a paragraph all about how awesome Streamlet is. It's a really great service, and you can use with with or without an account! How cool is that?</p>
+<div id="blurb">
+  <p id="intro">This is a paragraph all about how awesome Streamlet is. It's a really great service, and you can use with with or without an account! How cool is that?</p>
+</div>
   <form>
     <!-- search bar -->
-    <input type="radio" name="type" ng-model="main.movie" value="movie" />Movie
-    <input type="radio" name="type" ng-model="main.tv" value="tv" />TV Show
-    <input type="text" id="search" name="search" ng-model="main.search" placeholder="Is it streaming?"/>
-    <button type="submit" id="searchBtn" ng-click="main.forSearch()">Search</button>
+    <input type="radio" class="radio" name="type" ng-model="main.movie" value="movie" />
+    <label for="movie" class="radioLabel">Movie</label>
+    <input type="radio" class="radio" name="type" ng-model="main.tv" value="tv" />
+    <label for="tv" class="radioLabel">TV Show</label>
+    <br />
+    <input type="text" class="search" name="search" ng-model="main.search" placeholder="Is it streaming?"/>
+    <button type="submit" id="searchBtn" class="btn btn-custom btn-lg" ng-click="main.forSearch()">Search</button>
   </form>
   <!-- for displaying search results -->
   <div ng-repeat="title in main.netflixArray">
@@ -18,7 +23,7 @@
     <img src="{{title.poster}}" />
     <p>{{title.show_title}}</p>
     <p>Netflix</p>
-    <button type="button" id="saveButton" ng-controller="SaveController as save" ng-click="save.saveTitle()">Save</button>
+    <button type="button" id="saveButton" class="btn btn-custom" ng-controller="SaveController as save" ng-click="save.saveTitle()">Save</button>
   </div>
   <div ng-repeat="title in main.titlesArray">
     <img src="{{title.poster}}" />
@@ -29,5 +34,5 @@
     <div ng-repeat="title in main.streamArray[0]">
       <p>{{title.display_name}}</p>
     </div>
-    <button type="button" id="saveButton" ng-controller="SaveController as save" ng-click="save.saveTitle()">Save</button>
+    <button type="button" id="saveButton" class="btn btn-custom" ng-controller="SaveController as save" ng-click="save.saveTitle()">Save</button>
   </div>
