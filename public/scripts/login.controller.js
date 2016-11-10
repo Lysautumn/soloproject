@@ -6,6 +6,7 @@ function LoginController($http, $location) {
   var main = this;
   main.login = function() {
     console.log('Logging user in');
+    // for logging in
     $http.post('/login', {
       username: main.username,
       password: main.password

@@ -5,7 +5,7 @@
 </div>
 <!-- where short app description will go -->
 <div id="blurb">
-  <p id="intro">This is a paragraph all about how awesome Streamlet is. It's a really great service, and you can use with with or without an account! How cool is that?</p>
+  <p id="intro">Streamlet is an easy to use application to search multiple streaming platforms for movies and tv shows at once. There is no need to create an account to search, but if you do create an account, you can save search results!</p>
 </div>
   <form>
     <!-- search bar -->
@@ -21,17 +21,17 @@
   </form>
   <!-- for displaying search results -->
   <br />
-  <div id="display">
+  <div class="display">
     <div class="titleHolder" ng-repeat="title in main.netflixArray">
       <img src="{{title.poster}}" />
-      <p class="title">{{title.show_title}}</p>
-      <button type="button" id="saveButton" class="btn btn-custom btn-block" ng-controller="SaveController as save" ng-click="save.saveTitle()">Save</button>
+      <p class="title">{{title.title}}</p>
+      <button type="button" id="saveButton" class="btn btn-custom btn-block" ng-controller="SaveController as save" ng-click="save.save($index)">Save</button>
       <p>Netflix</p>
     </div>
     <div class="titleHolder" ng-repeat="title in main.titlesArray">
       <img src="{{title.poster}}" />
       <p class="title">{{title.title}}</p>
-      <button type="button" id="saveButton" class="btn btn-custom btn-block" ng-controller="SaveController as save" ng-click="save.saveTitle()">Save</button>
+      <button type="button" id="saveButton" class="btn btn-custom btn-block" ng-controller="SaveController as save" ng-click="save.save($index)">Save</button>
       <div ng-repeat="title in main.streamArray[0].all_sources">
         <p>{{title.display_name}}</p>
       </div>

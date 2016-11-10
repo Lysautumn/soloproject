@@ -1,18 +1,24 @@
 angular.module('streamApp').controller('SaveController', SaveController);
 
-function SaveController($http, $location) {
+// function for save controller
+function SaveController($http, $location, streamapi) {
   console.log('SaveController loaded');
   var main = this;
-  main.save = function(element) {
-    $http.post('/save', {
-      title: element.data.title,
-      image: element.data.poster_400x570,
-      url: element.data.subscription_web_sources
-    }).then(function() {
-      $location.path('/landing');
-      alert('Title saved');
-    }, function(error) {
-      console.log('Error saving to DB');
-    });
+  main.allResults = streamapi.allResults;
+  main.save = function(index) {
+    console.log('Saving title information');
+    console.log('main.id', main.id);
+    console.log('streamapi', main.allResults);
+    console.log('main.poster', main.poster);
+    // $http.post('/save', {
+    //   user_id: main.id,
+    //   title: main.title,
+    //   image: main.poster
+    // }).then(function() {
+    //   $location.path('/landing');
+    //   alert('Title saved');
+    // }, function(error) {
+    //   console.log('Error saving to DB', error);
+    // });
   };
 }

@@ -1,3 +1,4 @@
+require('dotenv').config();
 var express = require('express');
 var bodyParser = require('body-parser');
 var connection = require('./db/connection');
@@ -15,8 +16,8 @@ var passport = require('passport');
 var session = require('express-session');
 
 var sessionConfig = {
-  secret: 'super secret key goes here',
-  key: 'user',
+  secret: 'secret',
+  key: 'key',
   resave: true,
   saveUninitialized: true,
   cookie: {

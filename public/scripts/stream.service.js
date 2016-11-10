@@ -3,6 +3,7 @@ angular.module('streamApp').service('streamapi', StreamApiService);
 // sets up http function and API variables
 function StreamApiService($http, $q) {
   var main = this;
+  main.allResults = [];
   var API = 'http://api-public.guidebox.com/v1.43/US/rKAoemYxIt34rNVqrDbjRLqJIM59Z8Md';
   var netflixAPI = 'http://netflixroulette.net/api/api.php?title=';
   // function for searching movies
@@ -38,11 +39,11 @@ function StreamApiService($http, $q) {
       var guideboxResults = results[0];
       var netflixResults = results[1];
 
-      var allResults = {
+      main.allResults = {
         guideboxResults: guideboxResults,
         netflixResults: netflixResults
       };
-      return allResults;
+      return main.allResults;
     });
   };
   // function for searching shows
@@ -84,7 +85,7 @@ function StreamApiService($http, $q) {
       var guideboxResults = results[0];
       var netflixResults = results[1];
 
-      var allResults = {
+      main.allResults = {
         guideboxResults: [],
         netflixResults: netflixResults
       };
@@ -93,10 +94,10 @@ function StreamApiService($http, $q) {
         var showInfo = guideboxResults[i][0];
         var streamInfo = guideboxResults[i][1];
 
-        allResults.guideboxResults.push({showInfo, streamInfo});
+        main.allResults.guideboxResults.push({showInfo, streamInfo});
       }
-      console.log('allResults', allResults);
-      return allResults;
+      console.log('allResults', main.allResults);
+      return main.allResults;
     });
   };
 }

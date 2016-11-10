@@ -48,7 +48,7 @@ footer {
   display: inline;
   height: 15px;
 }
-#display {
+.display {
   display: flex;
   flex-wrap: wrap;
 }
@@ -127,7 +127,7 @@ footer p {
   margin-right: 5px;
   margin-top: 15px;
 }
-#display img {
+.display img {
   height: 400px;
   padding: 20px;
 }

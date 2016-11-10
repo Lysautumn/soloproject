@@ -1,24 +1,15 @@
-const router = require('express').Router();
-const pool = require('../db/connection');
+var router = require('express').Router();
+var Saved = require('../models/saved');
 
-// save title
-function saveTitle(title, image, url) {
-  return new Promise(function(resolve, reject) {
-    pool.connect(function(err, client, done) {
-      if(err) {
-        done();
-        return reject(err);
-      }
-      client.query('INSERT INTO movies (title, image, url) VALUES ($1, $2, $3);', [title, image, url], function(err, result) {
-        if(err) {
-          return reject(err);
-        }
-        resolve(result.rows);
-      });
-    });
+// add new info when someone saves
+router.post('/', function(req, res) {
+  console.log('Saving information');
+  Saved.saveTitle(req.body.user_id, req.body.title, req.body.poster).then(function() {
+    res.sendStatus(201);
+  }).catch(function(err) {
+    console.log('Error in /save', err);
+    res.sendStatus(500);
   });
-}
-// display titles
-
+});
 
 module.exports = router;

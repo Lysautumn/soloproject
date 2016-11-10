@@ -40,6 +40,7 @@ function MainController(streamapi) {
           main.streamArray.push(element.streamInfo.results.web.episodes);
         });
         if(results.netflixResults) {
+          results.netflixResults.title = results.netflixResults.show_title;
           main.netflixArray.push(results.netflixResults);
         }
       });
