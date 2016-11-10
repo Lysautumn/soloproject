@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Streamlet</title>
     <link rel="stylesheet" href="vendors/bootstrap.min.css" />
-    <link href="https://fonts.googleapis.com/css?family=Bungee+Inline|Roboto" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Bungee+Inline|Roboto:400,700" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="styles/style.css" />
@@ -28,7 +28,7 @@
   </head>
   <body ng-app="streamApp" ng-controller="MainController as main">
     <header>
-      <a href="/"><i class="material-icons md-48 blue">play_circle_outline</i></a>
+      <a href="/" ng-click="main.clearList()"><i class="material-icons md-48 blue">play_circle_outline</i></a>
       <h1 id="streamlet">Streamlet</h1>
     </header>
 

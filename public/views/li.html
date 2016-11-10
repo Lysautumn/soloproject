@@ -1,9 +1,9 @@
 <h2>Log In</h2>
 <!-- For Logging in -->
 <form ng-controller="LoginController as login">
-  <label for="username">Username</label>
-  <input type="text" id="username" name="username" ng-model="login.username" />
-  <label for="password">Password</label>
-  <input type="password" id="password" name="password" ng-model="login.password" />
-  <button class="btn btn-custom" type="button" ng-click="login.login()">Log In</button>
+  <label for="username" class="labels">Username</label>
+  <input type="text" id="username" class="input" name="username" ng-model="login.username" />
+  <label for="password" class="labels">Password</label>
+  <input type="password" id="password" class="input" name="password" ng-model="login.password" />
+  <button class="btn btn-custom btn-lg" type="button" ng-click="login.login()">Log In</button>
 </form>

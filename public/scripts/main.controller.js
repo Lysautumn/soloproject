@@ -3,7 +3,7 @@ angular.module('streamApp').controller('MainController', MainController);
 // function for MainController
 function MainController(streamapi) {
   var main = this;
-  // establish titlesArray for search results
+  // establish arrays for search results
   main.titlesArray = [];
   main.netflixArray = [];
   main.streamArray = [];
@@ -12,41 +12,48 @@ function MainController(streamapi) {
     // if movie radio is clicked
     if(main.movie) {
       streamapi.findMovie(main.search).then(function(results) {
-        // empty titles array for new results
+        // empty arrays for new results
         main.titlesArray = [];
         main.netflixArray = [];
         main.streamArray = [];
-        // display information for each movie returned in the search
+        // push movie information into arrays
         results.guideboxResults.forEach(function(element) {
           element.poster = element.poster_400x570;
           main.streamArray.push(element.purchase_web_sources);
           main.streamArray.push(element.subscription_web_sources);
           main.titlesArray.push(element);
         });
-        main.netflixArray.push(results.netflixResults);
-        console.log('titlesArray', main.titlesArray);
-        console.log('netflixArray', main.netflixArray);
-        console.log('streamArray', main.streamArray);
+        if(results.netflixResults) {
+          main.netflixArray.push(results.netflixResults);
+        }
       });
       // if tv radio is clicked
     } else if(main.tv) {
       streamapi.findShow(main.search).then(function(results) {
-        // empty titles array for new results
+        // empty arrays for new results
         main.titlesArray = [];
         main.netflixArray = [];
         main.streamArray = [];
-        // display information for each tv show returned in the search
-
+        // push tv show information into arrays
         results.guideboxResults.forEach(function(element) {
-          console.log(element);
           main.titlesArray.push(element.showInfo);
           main.streamArray.push(element.streamInfo.results.web.episodes);
         });
-        main.netflixArray.push(results.netflixResults);
+        if(results.netflixResults) {
+          main.netflixArray.push(results.netflixResults);
+        }
       });
       // if neither radio button is clicked
     } else {
       alert('Please select format');
     }
+  };
+  main.clearList = function() {
+    main.titlesArray = [];
+    main.netflixArray = [];
+    main.streamArray = [];
+    main.search = null;
+    main.movie = false;
+    main.tv = false;
   };
 }

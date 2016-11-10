@@ -11,7 +11,7 @@ header {
   padding: 20px;
 }
 form {
-  width: 90%;
+  width: 60%;
   background-color: #232323;
   border-radius: 10px;
   margin: 0 auto;
@@ -19,7 +19,7 @@ form {
 }
 footer {
   position: absolute;
-  height: 60px;
+  height: 40px;
   bottom: 0;
   left: 0;
   right: 0;
@@ -39,7 +39,7 @@ footer {
   margin: 50px auto;
 }
 .search {
-  width: 60%;
+  width: 87%;
   height: 40px;
   font-size: 20px;
   margin-top: 10px;
@@ -48,10 +48,31 @@ footer {
   display: inline;
   height: 15px;
 }
-.radioLabel {
+#display {
+  display: flex;
+  flex-wrap: wrap;
+}
+.titleHolder {
+  justify-content: space-around;
+  padding-left: 50px;
+  padding-right: 50px;
+}
+.input {
+  width: 30%;
+  height: 40px;
   font-size: 20px;
-  color: white;
-  padding: 5px;
+  margin-bottom: 5px;
+}
+.rinput {
+  width: 100%;
+  height: 40px;
+  font-size: 20px;
+  margin-bottom: 5px;
+}
+h2 {
+  text-align: center;
+  color: #000036;
+  margin-bottom: 50px;
 }
 /* fonts */
 h1 {
@@ -60,6 +81,11 @@ h1 {
 }
 h2, h3, p {
   font-family: 'Roboto', sans-serif;
+}
+.radioLabel {
+  font-size: 20px;
+  color: white;
+  padding: 5px;
 }
 a:link, a:visited {
   text-decoration: none;
@@ -77,12 +103,33 @@ footer p {
   padding-top: 10px;
   padding-right: 10px;
 }
+.title {
+  font-size: 16px;
+  font-weight: 700;
+  text-align: center;
+}
+.labels {
+  color: white;
+  font-size: 20px;
+}
+.rlabels {
+  color: white;
+  font-size: 20px;
+  float: left;
+  text-align: left;
+  margin-right: 15px;
+  width: 100%;
+}
 /* images */
 .material-icons.md-48.blue {
   font-size: 48px;
   color: #000036;
   margin-right: 5px;
   margin-top: 15px;
+}
+#display img {
+  height: 400px;
+  padding: 20px;
 }
 /* buttons */
 .btn-custom {

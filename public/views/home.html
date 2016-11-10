@@ -9,30 +9,34 @@
 </div>
   <form>
     <!-- search bar -->
-    <input type="radio" class="radio" name="type" ng-model="main.movie" value="movie" />
-    <label for="movie" class="radioLabel">Movie</label>
-    <input type="radio" class="radio" name="type" ng-model="main.tv" value="tv" />
-    <label for="tv" class="radioLabel">TV Show</label>
-    <br />
-    <input type="text" class="search" name="search" ng-model="main.search" placeholder="Is it streaming?"/>
-    <button type="submit" id="searchBtn" class="btn btn-custom btn-lg" ng-click="main.forSearch()">Search</button>
+    <div id="formInsides">
+      <input type="radio" class="radio" name="type" ng-model="main.movie" value="movie" />
+      <label for="movie" class="radioLabel">Movie</label>
+      <input type="radio" class="radio" name="type" ng-model="main.tv" value="tv" />
+      <label for="tv" class="radioLabel">TV Show</label>
+      <br />
+      <input type="text" class="search" name="search" ng-model="main.search" placeholder="Is it streaming?"/>
+      <button type="submit" id="searchBtn" class="btn btn-custom btn-lg" ng-click="main.forSearch()">Search</button>
+    </div>
   </form>
   <!-- for displaying search results -->
-  <div ng-repeat="title in main.netflixArray">
-    <h3>Netflix:</h3>
-    <img src="{{title.poster}}" />
-    <p>{{title.show_title}}</p>
-    <p>Netflix</p>
-    <button type="button" id="saveButton" class="btn btn-custom" ng-controller="SaveController as save" ng-click="save.saveTitle()">Save</button>
-  </div>
-  <div ng-repeat="title in main.titlesArray">
-    <img src="{{title.poster}}" />
-    <p>{{title.title}}</p>
-    <div ng-repeat="title in main.streamArray[0].all_sources">
-      <p>{{title.display_name}}</p>
+  <br />
+  <div id="display">
+    <div class="titleHolder" ng-repeat="title in main.netflixArray">
+      <img src="{{title.poster}}" />
+      <p class="title">{{title.show_title}}</p>
+      <button type="button" id="saveButton" class="btn btn-custom btn-block" ng-controller="SaveController as save" ng-click="save.saveTitle()">Save</button>
+      <p>Netflix</p>
     </div>
-    <div ng-repeat="title in main.streamArray[0]">
-      <p>{{title.display_name}}</p>
+    <div class="titleHolder" ng-repeat="title in main.titlesArray">
+      <img src="{{title.poster}}" />
+      <p class="title">{{title.title}}</p>
+      <button type="button" id="saveButton" class="btn btn-custom btn-block" ng-controller="SaveController as save" ng-click="save.saveTitle()">Save</button>
+      <div ng-repeat="title in main.streamArray[0].all_sources">
+        <p>{{title.display_name}}</p>
+      </div>
+      <div class="titleHolder" ng-repeat="title in main.streamArray[0]">
+        <p>{{title.display_name}}</p>
+      </div>
     </div>
-    <button type="button" id="saveButton" class="btn btn-custom" ng-controller="SaveController as save" ng-click="save.saveTitle()">Save</button>
   </div>

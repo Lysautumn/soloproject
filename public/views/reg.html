@@ -1,13 +1,17 @@
 <h2>Register</h2>
 <!-- registration form -->
   <form ng-controller="RegisterController as register">
-    <label for="name">Name:</label>
-    <input type="text" id="name" name="name" ng-model="register.name" />
-    <label for="email">Email:</label>
-    <input type="text" id="email" name="email" ng-model="register.email" />
-    <label for="username">Username:</label>
-    <input type="text" id="username" name="username" ng-model="register.username" />
-    <label for="password">Password:</label>
-    <input type="password" id="password" name="password" ng-model="register.password" />
-    <button type="submit" class="btn btn-custom" ng-click="register.register()">Submit</button>
+    <label for="name" class="rlabels">Name:</label>
+    <input type="text" id="name" class="rinput" name="name" ng-model="register.name" />
+    <br />
+    <label for="email" class="rlabels">Email:</label>
+    <input type="text" id="email" class="rinput" name="email" ng-model="register.email" />
+    <br />
+    <label for="username" class="rlabels">Username:</label>
+    <input type="text" id="username" class="rinput" name="username" ng-model="register.username" />
+    <br />
+    <label for="password" class="rlabels">Password:</label>
+    <input type="password" id="password" class="rinput" name="password" ng-model="register.password" />
+    <br />
+    <button type="submit" class="btn btn-custom btn-block" ng-click="register.register()">Submit</button>
   </form>
