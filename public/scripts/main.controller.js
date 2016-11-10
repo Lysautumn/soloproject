@@ -1,7 +1,7 @@
 angular.module('streamApp').controller('MainController', MainController);
 
 // function for MainController
-function MainController(streamapi) {
+function MainController(streamapi, $http, $location) {
   var main = this;
   // establish arrays for search results
   main.titlesArray = [];
@@ -56,5 +56,32 @@ function MainController(streamapi) {
     main.search = null;
     main.movie = false;
     main.tv = false;
+  };
+  main.save = function(index, array) {
+    console.log('Saving title information');
+    console.log('index', index);
+    console.log('array', array);
+    if(array === 'titlesArray') {
+      main.title = main.titlesArray[index].title;
+      main.poster = main.titlesArray[index].poster;
+      console.log(main.titlesArray[index].title);
+      console.log(main.titlesArray[index].poster);
+    }
+    if(array === 'netflixArray') {
+      main.title = main.netflixArray[index].title;
+      main.poster = main.netflixArray[index].poster;
+      console.log(main.netflixArray[index].title);
+      console.log(main.netflixArray[index].poster);
+    }
+    $http.post('/save', {
+      user_id: main.id,
+      title: main.title,
+      image: main.poster
+    }).then(function() {
+      $location.path('/landing');
+      alert('Title saved');
+    }, function(error) {
+      console.log('Error saving to DB', error);
+    });
   };
 }

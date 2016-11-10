@@ -25,13 +25,13 @@
     <div class="titleHolder" ng-repeat="title in main.netflixArray">
       <img src="{{title.poster}}" />
       <p class="title">{{title.title}}</p>
-      <button type="button" id="saveButton" class="btn btn-custom btn-block" ng-controller="SaveController as save" ng-click="save.save($index)">Save</button>
+      <button type="button" id="saveButton" class="btn btn-custom btn-block" ng-click="main.save($index, 'netflixArray')">Save</button>
       <p>Netflix</p>
     </div>
     <div class="titleHolder" ng-repeat="title in main.titlesArray">
       <img src="{{title.poster}}" />
       <p class="title">{{title.title}}</p>
-      <button type="button" id="saveButton" class="btn btn-custom btn-block" ng-controller="SaveController as save" ng-click="save.save($index)">Save</button>
+      <button type="button" id="saveButton" class="btn btn-custom btn-block" ng-click="main.save($index, 'titlesArray')">Save</button>
       <div ng-repeat="title in main.streamArray[0].all_sources">
         <p>{{title.display_name}}</p>
       </div>
