@@ -54,8 +54,7 @@ footer {
 }
 .titleHolder {
   justify-content: space-around;
-  padding-left: 50px;
-  padding-right: 50px;
+  padding: 0 50px 50px 50px;
 }
 .input {
   width: 30%;

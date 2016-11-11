@@ -5,8 +5,6 @@ angular.module('streamApp').config(function($routeProvider, $locationProvider) {
     templateUrl: 'views/reg.html'
   }).when('/landing', {
     templateUrl: 'views/landing.html'
-  }).when('/alerts', {
-    templateUrl: 'views/alerts.html'
   }).when('/list', {
     templateUrl: 'views/list.html'
   }).when('/loginuser', {

@@ -12,4 +12,15 @@ router.post('/', function(req, res) {
   });
 });
 
+// display saved info
+router.get('/', function(req, res) {
+  console.log('Getting saved info');
+  Saved.getTitles(req.user.id).then(function(result) {
+    res.send(result);
+  }).catch(function(err) {
+    console.log('Error in /save', err);
+    res.sendStatus(500);
+  });
+});
+
 module.exports = router;

@@ -1,6 +1,12 @@
+<div id="nav" ng-controller="LogoutController as logout">
+  <a href="/landing"><button type="button" class="btn btn-custom btn-lg">Home</button></a>
+  <button type="button" class="btn btn-custom btn-lg" ng-click="logout.logout()">Log Out</button>
+</div>
 <h2>List</h2>
 <!-- for displaying user's list of favorites -->
-<div ng-repeat="{{title in main.userList}}">
-  <img src="{{title.poster}}" />
-  <p>{{title.title}}</p>
+<div class="display" ng-controller="MainController as main">
+  <div id="listDisplay" class="titleHolder" ng-repeat="item in main.FavService.favorites">
+    <img src="{{item.image}}" />
+    <p class="title">{{item.title}}</p>
+  </div>
 </div>

@@ -3,7 +3,7 @@
   <button type="button" class="btn btn-custom reg btn-lg"><a href="/registeruser">Register</a></button>
   <button type="button" class="btn btn-custom reg btn-lg"><a href="/loginuser">Log In</a></button>
 </div>
-<!-- where short app description will go -->
+<!-- short application description -->
 <div id="blurb">
   <p id="intro">Streamlet is an easy to use application to search multiple streaming platforms for movies and tv shows at once. There is no need to create an account to search, but if you do create an account, you can save search results!</p>
 </div>
@@ -25,13 +25,11 @@
     <div class="titleHolder" ng-repeat="title in main.netflixArray">
       <img src="{{title.poster}}" />
       <p class="title">{{title.title}}</p>
-      <button type="button" id="saveButton" class="btn btn-custom btn-block" ng-click="main.save($index, 'netflixArray')">Save</button>
       <p>Netflix</p>
     </div>
     <div class="titleHolder" ng-repeat="title in main.titlesArray">
       <img src="{{title.poster}}" />
       <p class="title">{{title.title}}</p>
-      <button type="button" id="saveButton" class="btn btn-custom btn-block" ng-click="main.save($index, 'titlesArray')">Save</button>
       <div ng-repeat="title in main.streamArray[0].all_sources">
         <p>{{title.display_name}}</p>
       </div>

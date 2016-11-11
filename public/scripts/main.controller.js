@@ -1,8 +1,9 @@
 angular.module('streamApp').controller('MainController', MainController);
 
 // function for MainController
-function MainController(streamapi, $http, $location) {
+function MainController(streamapi, FavService, $http, $location) {
   var main = this;
+  main.FavService = FavService;
   // establish arrays for search results
   main.titlesArray = [];
   main.netflixArray = [];
@@ -49,6 +50,7 @@ function MainController(streamapi, $http, $location) {
       alert('Please select format');
     }
   };
+  // function to clear list
   main.clearList = function() {
     main.titlesArray = [];
     main.netflixArray = [];
@@ -57,6 +59,7 @@ function MainController(streamapi, $http, $location) {
     main.movie = false;
     main.tv = false;
   };
+  // function to save title to DB
   main.save = function(index, array) {
     console.log('Saving title information');
     console.log('index', index);
@@ -82,6 +85,16 @@ function MainController(streamapi, $http, $location) {
       alert('Title saved');
     }, function(error) {
       console.log('Error saving to DB', error);
+    });
+  };
+  main.displayTitles = function() {
+    $http.get('/save', {
+    }).then(function(response) {
+      console.log('displayTitles response', response.data);
+      main.FavService.favorites = response.data;
+      $location.path('/list');
+    }, function(error) {
+      console.log('Error getting from DB', error);
     });
   };
 }
