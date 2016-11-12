@@ -6,7 +6,7 @@ Streamlet came out of the problem of wanting to watch a specific movie or tv sho
 
 ## How To Use
 
-In order to run this app, run npm install in the terminal in order to download the dependencies for the app. It can be accessed in the browser from localhost:3000.
+In order to run this app, run npm install in the terminal in order to download the dependencies for the app. Then run npm start. It can be accessed in the browser from localhost:3000.
 
 On the home page, a user can search for a movie or a tv show by entering the title in the search bar. The user must select the radio button indicating whether they are looking for a movie or a tv show. The results of the search will be displayed on the page, along with information on where the titles are available to stream.
 
