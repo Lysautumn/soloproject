@@ -23,7 +23,6 @@ exports.setup = function() {
 };
 
 function findAndComparePassword(username, password, done) {
-  console.log('In findandcompare function');
   User.findByUsername(username).then(function(user) {
     if(!user) {
       return done(null, false);

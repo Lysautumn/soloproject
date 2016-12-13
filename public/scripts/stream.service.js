@@ -4,8 +4,8 @@ angular.module('streamApp').service('streamapi', StreamApiService);
 function StreamApiService($http, $q) {
   var main = this;
   main.allResults = [];
-  var API = 'http://api-public.guidebox.com/v1.43/US/rKAoemYxIt34rNVqrDbjRLqJIM59Z8Md';
-  var netflixAPI = 'http://netflixroulette.net/api/api.php?title=';
+  var API = '//api-public.guidebox.com/v1.43/US/rKAoemYxIt34rNVqrDbjRLqJIM59Z8Md';
+  var netflixAPI = '//netflixroulette.net/api/api.php?title=';
   // function for searching movies
   this.findMovie = function(movie) {
     var searchQuery = tripleEncode(movie);
@@ -96,7 +96,6 @@ function StreamApiService($http, $q) {
 
         main.allResults.guideboxResults.push({showInfo, streamInfo});
       }
-      console.log('allResults', main.allResults);
       return main.allResults;
     });
   };

@@ -2,10 +2,8 @@ angular.module('streamApp').controller('RegisterController', RegisterController)
 
 // function for registration controller
 function RegisterController($http, $location) {
-  console.log('RegisterController loaded');
   var main = this;
   main.register = function() {
-    console.log('Registering new user');
     $http.post('/register', {
       name: main.name,
       email: main.email,

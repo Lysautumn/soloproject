@@ -8,7 +8,6 @@ function MainController(streamapi, FavService, $http, $location) {
   main.titlesArray = [];
   main.netflixArray = [];
   main.streamArray = [];
-  console.log('MainController loaded');
   main.forSearch = function() {
     // if movie radio is clicked
     if(main.movie) {
@@ -61,9 +60,6 @@ function MainController(streamapi, FavService, $http, $location) {
   };
   // function to save title to DB
   main.save = function(index, array) {
-    console.log('Saving title information');
-    console.log('index', index);
-    console.log('array', array);
     if(array === 'titlesArray') {
       main.title = main.titlesArray[index].title;
       main.poster = main.titlesArray[index].poster;
@@ -90,7 +86,6 @@ function MainController(streamapi, FavService, $http, $location) {
   main.displayTitles = function() {
     $http.get('/save', {
     }).then(function(response) {
-      console.log('displayTitles response', response.data);
       main.FavService.favorites = response.data;
       $location.path('/list');
     }, function(error) {

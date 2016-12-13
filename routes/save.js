@@ -3,7 +3,6 @@ var Saved = require('../models/saved');
 
 // add new info when someone saves
 router.post('/', function(req, res) {
-  console.log('Saving information');
   Saved.saveTitle(req.user.id, req.body.title, req.body.image).then(function() {
     res.sendStatus(201);
   }).catch(function(err) {
@@ -14,7 +13,6 @@ router.post('/', function(req, res) {
 
 // display saved info
 router.get('/', function(req, res) {
-  console.log('Getting saved info');
   Saved.getTitles(req.user.id).then(function(result) {
     res.send(result);
   }).catch(function(err) {
