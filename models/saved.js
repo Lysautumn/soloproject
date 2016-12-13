@@ -8,7 +8,7 @@ function saveTitle(id, title, image) {
         done();
         return reject(err);
       }
-      client.query('INSERT INTO movies (user_id, title, image) VALUES ($1, $2, $3);', [id, title, image], function(err, result) {
+      client.query('INSERT INTO favorites (user_id, title, image) VALUES ($1, $2, $3);', [id, title, image], function(err, result) {
         if(err) {
           return reject(err);
         }
@@ -26,7 +26,7 @@ function getTitles(id) {
         console.log('Error in getTitles', err);
         return reject(err);
       }
-      client.query('SELECT title, image FROM movies JOIN solo_users ON movies.user_id=solo_users.id WHERE solo_users.id=$1;', [id], function(err, result) {
+      client.query('SELECT title, image FROM favorites JOIN solo_users ON movies.user_id=solo_users.id WHERE solo_users.id=$1;', [id], function(err, result) {
         done();
         if(err) {
           console.log('Error in client.query');
