@@ -26,7 +26,7 @@ function getTitles(id) {
         console.log('Error in getTitles', err);
         return reject(err);
       }
-      client.query('SELECT title, image FROM favorites JOIN solo_users ON movies.user_id=solo_users.id WHERE solo_users.id=$1;', [id], function(err, result) {
+      client.query('SELECT title, image FROM favorites JOIN solo_users ON favorites.user_id=solo_users.id WHERE solo_users.id=$1;', [id], function(err, result) {
         done();
         if(err) {
           console.log('Error in client.query');
